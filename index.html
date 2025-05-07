@@ -46,11 +46,12 @@
     <div class="lang-switcher">
       <button id="btn-sr" class="lang-btn">SR</button>
       <button id="btn-en" class="lang-btn">EN</button>
+      <button id="btn-ru" class="lang-btn">RU</button>
     </div>
     <h1 data-i18n="header.title">Shadow Studio Web Rešenja</h1>
     <p data-i18n="header.subtitle">Pomažem malim biznisima da izgrade profesionalno prisustvo na internetu</p>
     <a href="#contact" class="cta-button" data-i18n="cta.contact">Kontaktiraj me</a>
-    <a href="mailto:office@shadowstudiodev.com?subject=Zatra%C5%BEi%20ponudu" class="cta-button" data-i18n="cta.quote">Zatraži ponudu</a>
+    <a href="mailto:shadowstudioentertainment@gmail.com?subject=Zatra%C5%BEi%20ponudu" class="cta-button" data-i18n="cta.quote">Zatraži ponudu</a>
   </header>
 
   <main>
@@ -166,10 +167,38 @@
         'form.button': 'Send Message',
         'thankYou.text': 'Thank you! Your message has been sent.',
         'footer.text': '© 2025 Shadow Studio. All rights reserved.'
+      },
+      ru: {
+        'header.title': 'Веб-решения Shadow Studio',
+        'header.subtitle': 'Я помогаю малому бизнесу создать профессиональное онлайн-присутствие',
+        'cta.contact': 'Связаться',
+        'cta.quote': 'Запросить коммерческое предложение',
+        'about.title': 'Обо мне',
+        'about.text': 'Профессиональный веб-разработчик с многолетним опытом создания современных, быстрых и адаптивных сайтов. Специализация: спортзалы, кафе и рестораны. Я подхожу к каждому проекту с акцентом на четкие цели и измеримые результаты.',
+        'services.title': 'Услуги',
+        'service1.title': 'Простая лендинг-страница',
+        'service1.desc': 'Идеально подходит для продвижения одной услуги или продукта.',
+        'service1.price': 'Цена: 50€',
+        'service2.title': 'Сайт (до 2 страниц)',
+        'service2.desc': 'Базовый сайт для представления бизнеса со страницами "О нас" и "Услуги".',
+        'service2.price': 'Цена: 100€',
+        'service3.title': 'Сайт (до 3 страниц)',
+        'service3.desc': 'Расширенный сайт с дополнительной страницей меню, галереи или блога.',
+        'service3.price': 'Цена: 150€',
+        'contact.title': 'Контакт',
+        'form.hiddenSubject': 'Новое сообщение с сайта Shadow Studio',
+        'form.label.name': 'Имя и фамилия',
+        'form.placeholder.name': 'Ваше имя',
+        'form.label.email': 'Email адрес',
+        'form.placeholder.email': 'Ваш Email',
+        'form.label.message': 'Сообщение',
+        'form.placeholder.message': 'Чем могу помочь?',
+        'form.button': 'Отправить сообщение',
+        'thankYou.text': 'Спасибо! Ваше сообщение отправлено.',
+        'footer.text': '© 2025 Shadow Studio. Все права защищены.'
       }
     };
 
-    // Initialize language
     let currentLang = localStorage.getItem('lang') || 'sr';
 
     function applyLanguage(lang) {
@@ -179,12 +208,10 @@
         const key = el.dataset.i18n;
         if (translations[lang][key]) el.textContent = translations[lang][key];
       });
-      // placeholders
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.dataset.i18nPlaceholder;
         if (translations[lang][key]) el.placeholder = translations[lang][key];
       });
-      // highlight active button
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.id === 'btn-' + lang);
       });
@@ -192,11 +219,10 @@
 
     document.getElementById('btn-sr').addEventListener('click', () => applyLanguage('sr'));
     document.getElementById('btn-en').addEventListener('click', () => applyLanguage('en'));
+    document.getElementById('btn-ru').addEventListener('click', () => applyLanguage('ru'));
 
-    // apply default
     applyLanguage(currentLang);
 
-    // Form handling remains unchanged
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = e.target;
@@ -218,9 +244,6 @@
   </script>
 </body>
 </html>
-
-
-
 
 
 
