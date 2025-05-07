@@ -17,7 +17,10 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Poppins', sans-serif; line-height: 1.6; background-color: var(--light-bg); color: var(--text-color); }
-    header { background-color: var(--dark-bg); color: #fff; padding: 3rem 1rem; text-align: center; }
+    header { background-color: var(--dark-bg); color: #fff; padding: 3rem 1rem; text-align: center; position: relative; }
+    .lang-switcher { position: absolute; top: 1rem; right: 1rem; }
+    .lang-btn { background: transparent; border: none; color: #fff; font-weight: 600; margin-left: 0.5rem; cursor: pointer; }
+    .lang-btn.active { text-decoration: underline; }
     header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
     header p { font-size: 1.1rem; font-weight: 300; opacity: 0.9; }
     .cta-button { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; text-decoration: none; }
@@ -34,86 +37,166 @@
     .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--heading-color); }
     .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); font-size: 1rem; font-family: 'Poppins', sans-serif; }
     .contact-form button { padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; cursor: pointer; }
-    .thank-you {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #e6f9e6;
-      padding: 1rem 1.5rem;
-      border: 1px solid #4caf50;
-      border-radius: var(--border-radius);
-      color: #2e7d32;
-      font-weight: 600;
-      text-align: center;
-    }
+    .thank-you { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #e6f9e6; padding: 1rem 1.5rem; border: 1px solid #4caf50; border-radius: var(--border-radius); color: #2e7d32; font-weight: 600; text-align: center; }
     footer { text-align: center; padding: 1.5rem 1rem; background-color: #222; color: #888; font-size: 0.875rem; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Shadow Studio Web Rešenja</h1>
-    <p>Pomažem malim biznisima da izgrade profesionalno prisustvo na internetu</p>
-    <a href="#contact" class="cta-button">Kontaktiraj me</a>
+    <div class="lang-switcher">
+      <button id="btn-sr" class="lang-btn">SR</button>
+      <button id="btn-en" class="lang-btn">EN</button>
+    </div>
+    <h1 data-i18n="header.title">Shadow Studio Web Rešenja</h1>
+    <p data-i18n="header.subtitle">Pomažem malim biznisima da izgrade profesionalno prisustvo na internetu</p>
+    <a href="#contact" class="cta-button" data-i18n="cta.contact">Kontaktiraj me</a>
+    <a href="mailto:office@shadowstudiodev.com?subject=Zatra%C5%BEi%20ponudu" class="cta-button" data-i18n="cta.quote">Zatraži ponudu</a>
   </header>
 
   <main>
     <section id="about">
-      <h2>O meni</h2>
-      <p>Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizacija: teretane, kafići i restorani. Pristupam svakom projektu sa fokusom na jasne ciljeve i merljive rezultate.</p>
+      <h2 data-i18n="about.title">O meni</h2>
+      <p data-i18n="about.text">Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizacija: teretane, kafići i restorani. Pristupam svakom projektu sa fokusom na jasne ciljeve i merljive rezultate.</p>
     </section>
 
     <section id="services">
-      <h2>Usluge</h2>
+      <h2 data-i18n="services.title">Usluge</h2>
       <div class="services">
         <div class="service-card">
-          <h3>Jednostavna landing stranica</h3>
-          <p>Idealno za promociju jedne usluge ili proizvoda.</p>
-          <p><strong>Cena: 50€</strong></p>
+          <h3 data-i18n="service1.title">Jednostavna landing stranica</h3>
+          <p data-i18n="service1.desc">Idealno za promociju jedne usluge ili proizvoda.</p>
+          <p><strong data-i18n="service1.price">Cena: 50€</strong></p>
         </div>
         <div class="service-card">
-          <h3>Web sajt (do 2 stranice)</h3>
-          <p>Osnovni sajt za predstavnike biznisa sa stranicama O nama i Usluge.</p>
-          <p><strong>Cena: 100€</strong></p>
+          <h3 data-i18n="service2.title">Web sajt (do 2 stranice)</h3>
+          <p data-i18n="service2.desc">Osnovni sajt za predstavnike biznisa sa stranicama O nama i Usluge.</p>
+          <p><strong data-i18n="service2.price">Cena: 100€</strong></p>
         </div>
         <div class="service-card">
-          <h3>Web sajt (do 3 stranice)</h3>
-          <p>Prošireni sajt sa dodatnom stranicom Menija, Galerije ili Bloga.</p>
-          <p><strong>Cena: 150€</strong></p>
+          <h3 data-i18n="service3.title">Web sajt (do 3 stranice)</h3>
+          <p data-i18n="service3.desc">Prošireni sajt sa dodatnom stranicom Menija, Galerije ili Bloga.</p>
+          <p><strong data-i18n="service3.price">Cena: 150€</strong></p>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Kontakt</h2>
+      <h2 data-i18n="contact.title">Kontakt</h2>
       <div class="contact-form">
-        <div id="thankYou" class="thank-you">Hvala! Tvoja poruka je uspešno poslata.</div>
+        <div id="thankYou" class="thank-you" data-i18n="thankYou.text">Hvala! Tvoja poruka je uspešno poslata.</div>
 
         <form id="contactForm" action="https://formspree.io/f/xldbbwrv" method="POST">
-          <!-- Optional: add a subject for your inbox -->
-          <input type="hidden" name="_subject" value="Nova poruka sa sajta Shadow Studio">
+          <input type="hidden" name="_subject" data-i18n="form.hiddenSubject" value="Nova poruka sa sajta Shadow Studio">
 
-          <label for="name">Ime i prezime</label>
-          <input type="text" id="name" name="name" placeholder="Vaše ime" required>
+          <label for="name" data-i18n="form.label.name">Ime i prezime</label>
+          <input type="text" id="name" name="name" placeholder="Vaše ime" data-i18n-placeholder="form.placeholder.name" required>
 
-          <label for="email">Email adresa</label>
-          <input type="email" id="email" name="email" placeholder="Vaša email adresa" required>
+          <label for="email" data-i18n="form.label.email">Email adresa</label>
+          <input type="email" id="email" name="email" placeholder="Vaša email adresa" data-i18n-placeholder="form.placeholder.email" required>
 
-          <label for="message">Poruka</label>
-          <textarea id="message" name="message" rows="5" placeholder="Kako mogu da pomognem?" required></textarea>
+          <label for="message" data-i18n="form.label.message">Poruka</label>
+          <textarea id="message" name="message" rows="5" placeholder="Kako mogu da pomognem?" data-i18n-placeholder="form.placeholder.message" required></textarea>
 
-          <button type="submit">Pošalji poruku</button>
+          <button type="submit" data-i18n="form.button">Pošalji poruku</button>
         </form>
       </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Shadow Studio. Sva prava zadržana.
+    <p data-i18n="footer.text">&copy; 2025 Shadow Studio. Sva prava zadržana.</p>
   </footer>
 
   <script>
+    const translations = {
+      sr: {
+        'header.title': 'Shadow Studio Web Rešenja',
+        'header.subtitle': 'Pomažem malim biznisima da izgrade profesionalno prisustvo na internetu',
+        'cta.contact': 'Kontaktiraj me',
+        'cta.quote': 'Zatraži ponudu',
+        'about.title': 'O meni',
+        'about.text': 'Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizacija: teretane, kafići i restorani. Pristupam svakom projektu sa fokusom na jasne ciljeve i merljive rezultate.',
+        'services.title': 'Usluge',
+        'service1.title': 'Jednostavna landing stranica',
+        'service1.desc': 'Idealno za promociju jedne usluge ili proizvoda.',
+        'service1.price': 'Cena: 50€',
+        'service2.title': 'Web sajt (do 2 stranice)',
+        'service2.desc': 'Osnovni sajt za predstavnike biznisa sa stranicama O nama i Usluge.',
+        'service2.price': 'Cena: 100€',
+        'service3.title': 'Web sajt (do 3 stranice)',
+        'service3.desc': 'Prošireni sajt sa dodatnom stranicom Menija, Galerije ili Bloga.',
+        'service3.price': 'Cena: 150€',
+        'contact.title': 'Kontakt',
+        'form.hiddenSubject': 'Nova poruka sa sajta Shadow Studio',
+        'form.label.name': 'Ime i prezime',
+        'form.placeholder.name': 'Vaše ime',
+        'form.label.email': 'Email adresa',
+        'form.placeholder.email': 'Vaša email adresa',
+        'form.label.message': 'Poruka',
+        'form.placeholder.message': 'Kako mogu da pomognem?',
+        'form.button': 'Pošalji poruku',
+        'thankYou.text': 'Hvala! Tvoja poruka je uspešno poslata.',
+        'footer.text': '© 2025 Shadow Studio. Sva prava zadržana.'
+      },
+      en: {
+        'header.title': 'Shadow Studio Web Solutions',
+        'header.subtitle': 'I help small businesses build a professional online presence',
+        'cta.contact': 'Contact Me',
+        'cta.quote': 'Request a Quote',
+        'about.title': 'About Me',
+        'about.text': 'Professional web developer with years of experience creating modern, fast, and responsive websites. Specializing in gyms, cafés, and restaurants. I approach each project with a focus on clear objectives and measurable results.',
+        'services.title': 'Services',
+        'service1.title': 'Simple Landing Page',
+        'service1.desc': 'Perfect for promoting a single service or product.',
+        'service1.price': 'Price: €50',
+        'service2.title': 'Website (up to 2 pages)',
+        'service2.desc': 'Basic website for business profiles with About and Services pages.',
+        'service2.price': 'Price: €100',
+        'service3.title': 'Website (up to 3 pages)',
+        'service3.desc': 'Extended website with an additional Menu, Gallery, or Blog page.',
+        'service3.price': 'Price: €150',
+        'contact.title': 'Contact',
+        'form.hiddenSubject': 'New message from Shadow Studio site',
+        'form.label.name': 'Full Name',
+        'form.placeholder.name': 'Your Name',
+        'form.label.email': 'Email Address',
+        'form.placeholder.email': 'Your Email',
+        'form.label.message': 'Message',
+        'form.placeholder.message': 'How can I help?',
+        'form.button': 'Send Message',
+        'thankYou.text': 'Thank you! Your message has been sent.',
+        'footer.text': '© 2025 Shadow Studio. All rights reserved.'
+      }
+    };
+
+    // Initialize language
+    let currentLang = localStorage.getItem('lang') || 'sr';
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      // placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+      });
+      // highlight active button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'btn-' + lang);
+      });
+    }
+
+    document.getElementById('btn-sr').addEventListener('click', () => applyLanguage('sr'));
+    document.getElementById('btn-en').addEventListener('click', () => applyLanguage('en'));
+
+    // apply default
+    applyLanguage(currentLang);
+
+    // Form handling remains unchanged
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = e.target;
@@ -135,6 +218,7 @@
   </script>
 </body>
 </html>
+
 
 
 
