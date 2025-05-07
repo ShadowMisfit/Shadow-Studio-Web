@@ -19,11 +19,28 @@
     body { font-family: 'Poppins', sans-serif; line-height: 1.6; background-color: var(--light-bg); color: var(--text-color); }
     header { background-color: var(--dark-bg); color: #fff; padding: 3rem 1rem; text-align: center; position: relative; }
     .lang-switcher { position: absolute; top: 1rem; right: 1rem; }
-    .lang-btn { background: transparent; border: none; color: #fff; font-weight: 600; margin-left: 0.5rem; cursor: pointer; }
-    .lang-btn.active { text-decoration: underline; }
-    header h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
-    header p { font-size: 1.1rem; font-weight: 300; opacity: 0.9; }
-    .cta-button { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; text-decoration: none; }
+    .lang-select {
+      background-color: var(--dark-bg);
+      color: #fff;
+      border: 1px solid #fff;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius);
+      appearance: none;
+      cursor: pointer;
+    }
+    .cta-button {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0.5rem 0.25rem;
+      display: inline-block;
+    }
     main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
     section { margin-bottom: 3rem; }
     h2 { font-size: 1.75rem; color: var(--heading-color); margin-bottom: 1rem; position: relative; }
@@ -31,12 +48,10 @@
     .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .service-card { background-color: #fff; padding: 1.5rem; border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s; }
     .service-card:hover { transform: translateY(-5px); }
-    .service-card h3 { margin-bottom: 0.75rem; font-size: 1.25rem; color: var(--heading-color); }
-    .service-card p { font-size: 1rem; margin-bottom: 0.5rem; color: #555; }
     .contact-form { background-color: #fff; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
-    .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--heading-color); }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); font-size: 1rem; font-family: 'Poppins', sans-serif; }
-    .contact-form button { padding: 0.75rem 1.5rem; background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .contact-form label, .contact-form input, .contact-form textarea, .contact-form button { width: 100%; font-family: 'Poppins', sans-serif; }
+    .contact-form input, .contact-form textarea { padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); }
+    .contact-form button { background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; }
     .thank-you { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #e6f9e6; padding: 1rem 1.5rem; border: 1px solid #4caf50; border-radius: var(--border-radius); color: #2e7d32; font-weight: 600; text-align: center; }
     footer { text-align: center; padding: 1.5rem 1rem; background-color: #222; color: #888; font-size: 0.875rem; }
   </style>
@@ -44,14 +59,16 @@
 <body>
   <header>
     <div class="lang-switcher">
-      <button id="btn-sr" class="lang-btn">SR</button>
-      <button id="btn-en" class="lang-btn">EN</button>
-      <button id="btn-ru" class="lang-btn">RU</button>
+      <select id="langSelect" class="lang-select">
+        <option value="sr">🇷🇸 Српски</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="ru">🇷🇺 Русский</option>
+      </select>
     </div>
     <h1 data-i18n="header.title">Shadow Studio Web Rešenja</h1>
     <p data-i18n="header.subtitle">Pomažem malim biznisima da izgrade profesionalno prisustvo na internetu</p>
-    <a href="#contact" class="cta-button" data-i18n="cta.contact">Kontaktiraj me</a>
-    <a href="mailto:shadowstudioentertainment@gmail.com?subject=Zatra%C5%BEi%20ponudu" class="cta-button" data-i18n="cta.quote">Zatraži ponudu</a>
+    <button type="button" class="cta-button" data-i18n="cta.contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">Kontaktiraj me</button>
+    <button type="button" class="cta-button" data-i18n="cta.quote" onclick="window.location.href='mailto:office@shadowstudiodev.com?subject='+encodeURIComponent(translations[currentLang]['cta.quote']);">Zatraži ponudu</button>
   </header>
 
   <main>
@@ -85,19 +102,14 @@
       <h2 data-i18n="contact.title">Kontakt</h2>
       <div class="contact-form">
         <div id="thankYou" class="thank-you" data-i18n="thankYou.text">Hvala! Tvoja poruka je uspešno poslata.</div>
-
         <form id="contactForm" action="https://formspree.io/f/xldbbwrv" method="POST">
           <input type="hidden" name="_subject" data-i18n="form.hiddenSubject" value="Nova poruka sa sajta Shadow Studio">
-
           <label for="name" data-i18n="form.label.name">Ime i prezime</label>
           <input type="text" id="name" name="name" placeholder="Vaše ime" data-i18n-placeholder="form.placeholder.name" required>
-
           <label for="email" data-i18n="form.label.email">Email adresa</label>
           <input type="email" id="email" name="email" placeholder="Vaša email adresa" data-i18n-placeholder="form.placeholder.email" required>
-
           <label for="message" data-i18n="form.label.message">Poruka</label>
           <textarea id="message" name="message" rows="5" placeholder="Kako mogu da pomognem?" data-i18n-placeholder="form.placeholder.message" required></textarea>
-
           <button type="submit" data-i18n="form.button">Pošalji poruku</button>
         </form>
       </div>
@@ -134,7 +146,7 @@
         'form.label.email': 'Email adresa',
         'form.placeholder.email': 'Vaša email adresa',
         'form.label.message': 'Poruka',
-        'form.placeholder.message': 'Kako mogu da pomognem?',
+        'form.placeholder.message': 'Kako mogu da pomognim?',
         'form.button': 'Pošalji poruku',
         'thankYou.text': 'Hvala! Tvoja poruka je uspešno poslata.',
         'footer.text': '© 2025 Shadow Studio. Sva prava zadržana.'
@@ -198,12 +210,11 @@
         'footer.text': '© 2025 Shadow Studio. Все права защищены.'
       }
     };
-
     let currentLang = localStorage.getItem('lang') || 'sr';
-
     function applyLanguage(lang) {
       currentLang = lang;
       localStorage.setItem('lang', lang);
+      document.getElementById('langSelect').value = lang;  
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         if (translations[lang][key]) el.textContent = translations[lang][key];
@@ -212,34 +223,21 @@
         const key = el.dataset.i18nPlaceholder;
         if (translations[lang][key]) el.placeholder = translations[lang][key];
       });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.id === 'btn-' + lang);
-      });
     }
-
-    document.getElementById('btn-sr').addEventListener('click', () => applyLanguage('sr'));
-    document.getElementById('btn-en').addEventListener('click', () => applyLanguage('en'));
-    document.getElementById('btn-ru').addEventListener('click', () => applyLanguage('ru'));
-
+    document.getElementById('langSelect').addEventListener('change', e => applyLanguage(e.target.value));
     applyLanguage(currentLang);
-
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = e.target;
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          document.getElementById('thankYou').style.display = 'block';
-        } else {
-          return response.json().then(data => Promise.reject(data));
-        }
-      }).catch(() => {
-        alert('Došlo je do greške pri slanju. Molim pokušaj ponovo.');
-      });
+      fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) })
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('thankYou').style.display = 'block';
+          } else {
+            return response.json().then(data => Promise.reject(data));
+          }
+        }).catch(() => alert('Došlo je do greške pri slanju. Molim pokušaj ponovo.'));
     });
   </script>
 </body>
