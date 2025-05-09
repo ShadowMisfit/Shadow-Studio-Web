@@ -53,6 +53,12 @@
     .contact-form input, .contact-form textarea { padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); }
     .contact-form button { background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; }
     .thank-you { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #e6f9e6; padding: 1rem 1.5rem; border: 1px solid #4caf50; border-radius: var(--border-radius); color: #2e7d32; font-weight: 600; text-align: center; }
+    .service-card h3 .subtitle {
+       display: block;          /* pushes it onto a new line */
+       font-size: 0.9rem;       /* optional: make the subtitle a bit smaller */
+       color: #555;             /* optional: lighter color */
+        margin-top: 0.25rem;     /* optional: add a little breathing room */
+      }
     footer { text-align: center; padding: 1.5rem 1rem; background-color: #222; color: #888; font-size: 0.875rem; }
   </style>
 </head>
@@ -91,7 +97,7 @@
           <p><strong data-i18n="service2.price">Cena: 100€</strong></p>
         </div>
         <div class="service-card">
-          <h3 data-i18n="service3.title">Web sajt (do 3 stranice)</h3>
+          <h3 data-i18n="service3.title">Web sajt <span class="subtitle">(do 3 stranice)</span></h3>
           <p data-i18n="service3.desc">Prošireni sajt sa dodatnom stranicom Menija, Galerije ili Bloga.</p>
           <p><strong data-i18n="service3.price">Cena: 150€</strong></p>
         </div>
