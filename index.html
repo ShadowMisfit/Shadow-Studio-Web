@@ -38,11 +38,12 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      margin: 1.5rem 0.25rem 0; /* Increased top margin to separate from header text */
+      margin: 1.5rem 0.25rem 0;
       display: inline-block;
     }
     main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
     section { margin-bottom: 3rem; }
+    #contact { padding: 4rem 1rem; }
     h2 { font-size: 1.75rem; color: var(--heading-color); margin-bottom: 1rem; position: relative; }
     h2::after { content: ''; width: 50px; height: 3px; background-color: var(--primary-color); position: absolute; bottom: -5px; left: 0; border-radius: var(--border-radius); }
     .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
@@ -60,11 +61,11 @@
       color: #555;
       margin-top: 0.25rem;
     }
-    .contact-form { background-color: #fff; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
-    .contact-form label, .contact-form input, .contact-form textarea, .contact-form button { width: 100%; font-family: 'Poppins', sans-serif; }
-    .contact-form input, .contact-form textarea { padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); }
-    .contact-form button { background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; }
-    .thank-you { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #e6f9e6; padding: 1rem 1.5rem; border: 1px solid #4caf50; border-radius: var(--border-radius); color: #2e7d32; font-weight: 600; text-align: center; }
+    .contact-form { background-color: #fff; padding: 3rem; border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
+    .contact-form label { display: block; margin-bottom: 0.5rem; font-size: 1.125rem; font-weight: 600; }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 1rem; margin-bottom: 1.25rem; border: 1px solid #ccc; border-radius: var(--border-radius); font-size: 1.125rem; }
+    .contact-form button { background-color: var(--primary-color); color: #fff; border: none; border-radius: var(--border-radius); padding: 1rem; font-size: 1.125rem; font-weight: 600; cursor: pointer; width: 100%; }
+    .thank-you { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #e6f9e6; padding: 1rem 1.5rem; border: 1px solid #4caf50; border-radius: var(--border-radius); color: #2e7d32; font-weight: 600; text-align: center; font-size: 1.125rem; }
     footer { text-align: center; padding: 1.5rem 1rem; background-color: #222; color: #888; font-size: 0.875rem; }
   </style>
 </head>
@@ -86,7 +87,7 @@
   <main>
     <section id="about">
       <h2 data-i18n="about.title">O meni</h2>
-      <p data-i18n="about.text">Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizacija: teretane, kafići i restorani. Pristupam svakom projektu sa fokusom na jasne ciljeve i merljive rezultate.</p>
+      <p data-i18n="about.text">Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizovan sam u izradi sajtova za male biznise.</p>
     </section>
 
     <section id="services">
@@ -146,7 +147,7 @@
         'cta.contact': 'Kontaktiraj me',
         'cta.quote': 'Zatraži ponudu',
         'about.title': 'O meni',
-        'about.text': 'Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizacija: teretane, kafići i restorani. Pristupam svakom projektu sa fokusom na jasne ciljeve i merljive rezultate.',
+        'about.text': 'Stručan web developer sa višegodišnjim iskustvom u izradi modernih, brzih i responzivnih sajtova. Specijalizovan sam u izradi sajtova za male biznise.',
         'services.title': 'Usluge',
         'service1.title': 'Jednostavna landing stranica',
         'service1.desc': 'Idealno za promociju jedne usluge ili proizvoda.',
@@ -177,7 +178,7 @@
         'cta.contact': 'Contact Me',
         'cta.quote': 'Request a Quote',
         'about.title': 'About Me',
-        'about.text': 'Professional web developer with years of experience creating modern, fast, and responsive websites. Specializing in gyms, cafés, and restaurants. I approach each project with a focus on clear objectives and measurable results.',
+        'about.text': 'Professional web developer with years of experience creating modern, fast, and responsive websites. I specialize in building websites for small businesses.',
         'services.title': 'Services',
         'service1.title': 'Simple Landing Page',
         'service1.desc': 'Perfect for promoting a single service or product.',
@@ -208,7 +209,7 @@
         'cta.contact': 'Связаться',
         'cta.quote': 'Запросить коммерческое предложение',
         'about.title': 'Обо мне',
-        'about.text': 'Профессиональный веб-разработчик с многолетним опытом создания современных, быстрых и адаптивных сайтов. Специализация: спортзалы, кафе и рестораны. Я подхожу к каждому проекту с акцентом на четкие цели и измеримые результаты.',
+        'about.text': 'Профессиональный веб-разработчик с многолетним опытом создания современных, быстрых и адаптивных сайтов. Я специализируюсь на разработке сайтов для малого бизнеса.',
         'services.title': 'Услуги',
         'service1.title': 'Простая лендинг-страница',
         'service1.desc': 'Идеально подходит для продвижения одной услуги или продукта.',
@@ -231,7 +232,7 @@
         'form.placeholder.message': 'Чем могу помочь?',
         'form.button': 'Отправить сообщение',
         'thankYou.text': 'Спасибо! Ваше сообщение отправлено.',
-        'footer.text': '© 2025 Shadow Studio. Все права защищены.'
+        'footer.text': '© 2025 Shadow Studio. Sva prava zadržana.'
       }
     };
     let currentLang = localStorage.getItem('lang') || 'sr';
